@@ -1,6 +1,8 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+import static java.lang.Float.floatToIntBits;
+
 /**
  * AD 315 Assignment
  * Understanding IEEE 754 Floating Point Numbers
@@ -28,8 +30,10 @@ public class Main {
      * IEEE 754 floating point representation conversion
      */
     public static void iEEE754(double number) {
-        System.out.println("Converting ");
-        String output = "The ";
+        System.out.println("Converting "+number + " according to IEEE 754 32-bit layout");
+        float floatNum = (float) number;
+        System.out.print("The output is ");
+        System.out.println(floatToIntBits(floatNum));
     }
 
     public static void add1() {
@@ -44,12 +48,13 @@ public class Main {
 
     public static void special() {
         System.out.println();
+        System.out.println();
         // positive infinity
         System.out.println(1.0/0);
         // negative infinity
         System.out.println(-1.0/0);
         // Not a number
-        System.out.println(0/0);
+        System.out.println(0.0f/0.0f);
     }
 
     public static void overflows() {
