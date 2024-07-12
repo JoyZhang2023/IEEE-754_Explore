@@ -2,6 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 import static java.lang.Float.floatToIntBits;
+import java.math.BigDecimal;
 
 /**
  * AD 315 Assignment
@@ -24,7 +25,6 @@ public class Main {
         precisionLoss();
 
     }
-
 
     /**
      * IEEE 754 floating point representation conversion
@@ -65,6 +65,26 @@ public class Main {
     }
 
     public static void precisionLoss() {
+        // Demonstrate precision loss for very small numbers
+        System.out.println("Precision loss for very small numbers:");
+        for (int i = -300; i < 0; i += 50) {
+            double value = Math.pow(10, i);
+            double precisionLoss = calculatePrecisionLoss(value);
+            System.out.printf("Value: %e, Precision Loss: %e%n", value, precisionLoss);
+        }
 
+        // Demonstrate precision loss for very large numbers
+        System.out.println("\nPrecision loss for very large numbers:");
+        for (int i = 0; i < 300; i += 50) {
+            double value = Math.pow(10, i);
+            double precisionLoss = calculatePrecisionLoss(value);
+            System.out.printf("Value: %e, Precision Loss: %e%n", value, precisionLoss);
+        }
+    }
+
+    private static double calculatePrecisionLoss(double value) {
+        BigDecimal bigDecimal = new BigDecimal(value);
+        double doubleValue = bigDecimal.doubleValue();
+        return Math.abs(value - doubleValue);
     }
 }
